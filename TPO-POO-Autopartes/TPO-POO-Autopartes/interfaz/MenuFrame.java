@@ -1,8 +1,7 @@
 package interfaz;
-
+import javax.swing.*;
 import negocio.Administrador;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,7 @@ public class MenuFrame extends JFrame {
 
         setTitle("Menú Principal - Tutta la Macchina");
         setSize(600, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cambiado a EXIT_ON_CLOSE para cerrar toda la aplicación
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new GridLayout(12, 1));
@@ -92,21 +91,21 @@ public class MenuFrame extends JFrame {
         agregarClienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	new AgregarClienteFrame(admin);
+                new AgregarClienteFrame(admin);
             }
         });
 
         cargarPedidoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CargarPedidoFrame(admin).setVisible(true);;
+                new CargarPedidoFrame(admin).setVisible(true);
             }
         });
 
         cancelarPedidoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CancelarPedidoFrame(admin).setVisible(true);;
+                new CancelarPedidoFrame(admin).setVisible(true);
             }
         });
 
@@ -127,7 +126,12 @@ public class MenuFrame extends JFrame {
         cerrarSesionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // cerrarSesion();
+                // Mostrar el frame de cerrar sesión
+                CerrarSesionFrame cerrarSesionFrame = new CerrarSesionFrame(admin);
+                cerrarSesionFrame.setVisible(true);
+
+                // Cerrar este menú principal al cerrar sesión
+                dispose();
             }
         });
 
